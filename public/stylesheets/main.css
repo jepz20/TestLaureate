@@ -1,0 +1,26 @@
+
+.texto-small {
+    font-size: 13px;
+    text-align: right;
+}
+
+.texto-big {
+    font-size: 22px;
+}
+
+.my-animation {
+    opacity: 1;
+}
+
+.my-animation.ng-hide {
+    opacity: 0;
+}
+
+.my-animation.ng-hide-add,
+.my-animation.ng-hide-remove {
+    -webkit-transition: 0.5s linear all;
+    -moz-transition: 0.5s linear all;
+  	-ms-transition: 0.5s linear all;
+  	-o-transition: 0.5s linear all;
+    transition: 0.5s linear all;
+}

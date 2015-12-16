@@ -1,0 +1,25 @@
+application: testlaureate2015
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /stylesheets
+  static_dir: public/stylesheets
+
+- url: /public
+  static_dir: public
+
+- url: /lib
+  static_dir: public/lib
+
+- url: /js
+  static_dir: public/js
+
+- url: /images
+  static_dir: public/images
+
+- url: /.*
+  script: server.application
+

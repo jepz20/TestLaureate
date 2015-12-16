@@ -1,0 +1,78 @@
+<html ng-app="TestLaureateApp">
+  <head>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/directive.js"></script>
+    <script src="/js/filter.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <title>Software Developer Test</title>
+  </head>
+  <body ng-controller="ChannelLaureteCtrl" ng-init="buscarVideos()" >
+    <div scrolly="cargarMasVideos()">
+      <div class="row">
+        <div class=" col s8">
+          <h2>Laureate International</h2>
+          <h4>Software Developer Test</h4>
+        </div>
+        <div class="col s4" >
+          <div class="row" style="cursor: pointer" ng-click="irAUrl('https://github.com/jepz20/TestLaureate')">
+            <div class="col s2">
+              <br/>
+              <img src="images/jepz.jpg" class="circle responsive-img">
+            </div>
+            <div class="col s6">
+              <br/>
+              <h5>Jose Perdomo</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="waves-effect waves-light btn" ng-click="mostrarOcultarCaracteristicas()">{{textoBoton}}</a>
+      <div class="row my-animation" ng-show="mostrarCaracteristicas">
+        <div class="col s12 m5">
+          <div class="card-panel teal">
+            <ul class="collection with-header">
+              <li class="collection-header"><h5>Features</h5></li>
+              <li class="collection-item">Infinite Scrolling: New Items Shown as you scroll</li>
+              <li class="collection-item">Non Exact Filter on Title: Type inexact words for example "teh ftuure" and match "the future" **Code previously made on a personal project**</li>
+              <li class="collection-item">Link to Github Project: Click on my Name or Picture to open a page to the github Project</li>
+              <li class="collection-item">Click on "Watch on Youtube" to open the video's page</li>
+              <li class="collection-item">Inline videoplayback using youtube embed video</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <input class="form-control" type="text" focus-on="listo" id="filtro" placeholder="Search by Title" ng-model= "filtroNoExacto.title" ng-keydown="resetearLimite()" autofocus/>
+        <input class="form-control" type="text" focus-on="listo" id="filtro" placeholder="Search by Description" ng-model= "filtro.snippet.description" ng-keydown="resetearLimite()"  autofocus/>
+        <div class="row">
+          <div ng-repeat="video in items | textoNoExacto: filtroNoExacto | filter: filtro | limitTo: limit">
+            <div class="col s6 m6">
+              <div class="card">
+                <div class="card-image">
+                    <div class="video-container responsive-img">
+                       <iframe ng-src={{mostrarVideo(video.id.videoId)}} frameborder="1" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="card-content">
+                  <div class="grey-text texto-small">
+                    {{formatearFecha(video.snippet.publishedAt)}}
+                  </div>
+                  <div class="green-text text-darken-2 texto-big">{{video.snippet.title}}</div>
+                  <p>{{video.snippet.description}}</p>
+                </div>
+                <div class="card-action">
+                  <a ng-click="irAUrl('https://www.youtube.com/watch?v='+video.id.videoId)">Watch on youtube</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
